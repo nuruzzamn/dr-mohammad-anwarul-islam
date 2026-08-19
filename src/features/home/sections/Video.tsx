@@ -1,25 +1,8 @@
-import { Play } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { SectionLabel } from "../components/SectionLabel";
 
 export function Video() {
   const introVideo = useRef<HTMLVideoElement>(null);
-  const [isVideoPlaying, setIsVideoPlaying] = useState(true);
-
-  const toggleIntroVideo = () => {
-    const video = introVideo.current;
-    if (!video) return;
-    video.muted = true;
-    if (video.paused) {
-      video
-        .play()
-        .then(() => setIsVideoPlaying(true))
-        .catch(() => setIsVideoPlaying(false));
-    } else {
-      video.pause();
-      setIsVideoPlaying(false);
-    }
-  };
 
   return (
     <section className="video-section section-pad">
@@ -48,40 +31,17 @@ export function Video() {
               const video = introVideo.current;
               if (video) {
                 video.muted = true;
-                video
-                  .play()
-                  .then(() => setIsVideoPlaying(true))
-                  .catch(() => setIsVideoPlaying(false));
+                video.play().catch(() => {
+                  // Auto-play was blocked, will continue silently
+                });
               }
             }}
-            onClick={toggleIntroVideo}
-            aria-label="Silent video introduction — click to pause or play"
           >
             <source
               src="/assets/introduction-video_e1a9d5bf.mp4"
               type="video/mp4"
             />
           </video>
-          <div className="video-overlay">
-            <span>
-              {isVideoPlaying ? "Playing silently" : "Paused — tap to play"}
-            </span>
-            <button
-              onClick={toggleIntroVideo}
-              aria-label={
-                isVideoPlaying
-                  ? "Pause introduction video"
-                  : "Play introduction video"
-              }
-            >
-              {isVideoPlaying ? (
-                <span className="pause-glyph">Ⅱ</span>
-              ) : (
-                <Play size={20} fill="currentColor" />
-              )}
-            </button>
-            <span>Sound off · loop</span>
-          </div>
         </div>
       </div>
     </section>

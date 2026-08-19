@@ -1,6 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
 import { SectionLabel } from "../components/SectionLabel";
-import { toast } from "sonner";
 
 export function Chamber() {
   return (
@@ -34,16 +33,14 @@ export function Chamber() {
             <a className="button-primary" href="tel:+8809666787814">
               Call for Serial <ArrowUpRight size={17} />
             </a>
-            <button
+            <a
               className="button-quiet"
-              onClick={() =>
-                toast.info(
-                  "Directions require confirmed map coordinates before public use."
-                )
-              }
+              href="https://maps.app.goo.gl/gD2Lmhrm1YEx1Bay7"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Get Directions <ArrowUpRight size={16} />
-            </button>
+            </a>
           </div>
           <p className="fine-print">
             Chamber schedules may change. Please call before visiting to confirm
@@ -51,11 +48,14 @@ export function Chamber() {
           </p>
         </div>
         <div className="chamber-art reveal">
-          <div className="map-art">
-            <span>MYMENSINGH</span>
-            <b>23° 55' N</b>
-            <i />
-            <small>POPULAR DIAGNOSTIC CENTER</small>
+          <div className="map-frame">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3524.38334882793!2d90.4087841!3d24.745330300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37564fa682e7f843%3A0xff705ad5e320e866!2sPopular%20Diagnostic%20Centre%20Ltd.%2C%20Mymensingh!5e1!3m2!1sen!2sbd!4v1787156149283!5m2!1sen!2sbd"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
         </div>
       </div>
