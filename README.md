@@ -21,6 +21,7 @@ A high-performance, visually compelling medical portfolio website built for Dr. 
 This is a modern, production-grade medical professional portfolio that combines sophisticated UI design with smooth animations and excellent user experience. Built with cutting-edge web technologies, it serves as both a patient information hub and a professional showcase for medical credentials and expertise.
 
 **Key Highlights:**
+
 - 🎨 **Editorial Design System** — Warm ivory field, charcoal typography, River Teal accents
 - 🎬 **Cinema-Quality Motion** — GSAP-powered animations with scroll-triggered effects
 - 📱 **Mobile-First Responsive** — Horizontal swipe interactions and touch-optimized navigation
@@ -32,30 +33,32 @@ This is a modern, production-grade medical professional portfolio that combines 
 
 ## 🛠️ Tech Stack
 
-| Category | Technology | Purpose |
-|----------|-----------|---------|
-| **Framework** | React 19.2 + TypeScript | Modern component architecture with full type safety |
-| **Build Tool** | Vite 7.1 | Lightning-fast HMR and optimized production builds |
-| **Styling** | Tailwind CSS 4.1 + PostCSS | Utility-first styling with design tokens |
-| **Animation** | GSAP 3.15 + ScrollTrigger | Professional-grade motion design |
-| **UI Components** | Radix UI + shadcn/ui | Accessible, composable component primitives |
-| **Icons** | Lucide React | Consistent, scalable icon system |
-| **Forms** | React Hook Form + Zod | Type-safe form validation |
-| **Routing** | Wouter | Lightweight client-side navigation |
-| **Notifications** | Sonner | Elegant toast notifications |
-| **Package Manager** | pnpm 10.4 | Efficient dependency management |
+| Category            | Technology                 | Purpose                                             |
+| ------------------- | -------------------------- | --------------------------------------------------- |
+| **Framework**       | React 19.2 + TypeScript    | Modern component architecture with full type safety |
+| **Build Tool**      | Vite 7.1                   | Lightning-fast HMR and optimized production builds  |
+| **Styling**         | Tailwind CSS 4.1 + PostCSS | Utility-first styling with design tokens            |
+| **Animation**       | GSAP 3.15 + ScrollTrigger  | Professional-grade motion design                    |
+| **UI Components**   | Radix UI + shadcn/ui       | Accessible, composable component primitives         |
+| **Icons**           | Lucide React               | Consistent, scalable icon system                    |
+| **Forms**           | React Hook Form + Zod      | Type-safe form validation                           |
+| **Routing**         | Wouter                     | Lightweight client-side navigation                  |
+| **Notifications**   | Sonner                     | Elegant toast notifications                         |
+| **Package Manager** | pnpm 10.4                  | Efficient dependency management                     |
 
 ---
 
 ## 🎯 Key Features
 
 ### Design & UX
+
 - **Editorial Aesthetic** — Asymmetric layouts, generous whitespace, archival linework
 - **Typography Hierarchy** — Clear visual structure with size and weight variation
 - **Motion Design** — Scroll-triggered reveals, parallax effects, smooth transitions
 - **Color System** — Warm ivory background (#FAFAF5) with charcoal text and teal accents
 
 ### Interactive Elements
+
 - **Hero Video Background** — Auto-playing neural visualization with randomized loop
 - **Horizontal Scroll Sections** — Swipe-able credential and expertise showcases
 - **Expertise Explorer** — Interactive specialist focus with detail panels
@@ -64,6 +67,7 @@ This is a modern, production-grade medical professional portfolio that combines 
 - **Emergency Information** — Clear guidance for urgent medical situations
 
 ### Performance Features
+
 - **Optimized Asset Loading** — Metadata preload for videos, lazy loading images
 - **Bundle Splitting** — Code separation for faster initial load
 - **Production Optimized** — Tree-shaking, minification, asset optimization
@@ -105,7 +109,8 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - pnpm 10.4+
 
 ### Installation
@@ -138,7 +143,7 @@ All media assets are organized in the `public/` directory:
 
 ```
 public/
-└── manus-storage/
+└── assets/
     ├── doctor-mark.png           # Logo/brand mark
     ├── neural-linework.png        # Decorative illustration
     ├── medical-notes.jpg          # Clinical study visual
@@ -152,23 +157,27 @@ public/
 ## 🎨 Design System
 
 ### Color Palette
+
 ```css
---background: #FAFAF5;      /* Warm ivory */
---foreground: #1A1A1A;      /* Charcoal */
---primary: #0E8A8A;          /* River Teal */
---primary-hover: #0B7070;
---border: #E8E4DC;
---muted: #6B6B6B;
+--background: #fafaf5; /* Warm ivory */
+--foreground: #1a1a1a; /* Charcoal */
+--primary: #0e8a8a; /* River Teal */
+--primary-hover: #0b7070;
+--border: #e8e4dc;
+--muted: #6b6b6b;
 ```
 
 ### Typography Scale
+
 - **Display**: 2.5rem — 4rem (Hero, Section titles)
 - **Heading**: 1.5rem — 2rem (Section labels, Card titles)
 - **Body**: 1rem — 1.125rem (Content, descriptions)
 - **Small**: 0.875rem (Meta, captions)
 
 ### Spacing System
+
 Based on `0.25rem` (4px) units for consistent rhythm:
+
 - Section padding: `6rem` / `4rem` (desktop / mobile)
 - Container max-width: `75rem` / `1200px`
 - Grid gaps: `2rem` / `1.5rem`
@@ -188,6 +197,7 @@ vercel --prod
 ```
 
 **Environment Configuration:**
+
 - Production URL: `https://dr-mohammad-anwarul-islam.vercel.app/`
 - Build Command: `pnpm build`
 - Output Directory: `dist/`
@@ -210,11 +220,21 @@ pnpm format
 
 ```css
 /* Mobile First */
-@media (min-width: 640px)  { /* sm */ }
-@media (min-width: 768px)  { /* md */ }
-@media (min-width: 900px)  { /* Desktop threshold */ }
-@media (min-width: 1024px) { /* lg */ }
-@media (min-width: 1280px) { /* xl */ }
+@media (min-width: 640px) {
+  /* sm */
+}
+@media (min-width: 768px) {
+  /* md */
+}
+@media (min-width: 900px) {
+  /* Desktop threshold */
+}
+@media (min-width: 1024px) {
+  /* lg */
+}
+@media (min-width: 1280px) {
+  /* xl */
+}
 ```
 
 ---
