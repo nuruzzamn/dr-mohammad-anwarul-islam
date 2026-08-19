@@ -1455,15 +1455,53 @@ h2 i {
     margin-top: 15px;
   }
   .credential-inner {
-    overflow-x: auto;
+    /* Mobile Accordion - vertical stack */
+    flex-direction: column;
+    overflow-x: visible;
+    overflow-y: visible;
     justify-content: flex-start;
-    padding-bottom: 8px;
+    padding-bottom: 0;
+    gap: 0;
   }
   .credential {
-    min-width: 145px;
+    /* Mobile Accordion Item */
+    min-width: auto;
+    width: 100%;
+    padding-right: 0;
+    border-right: 0;
+    border-bottom: 1px solid rgba(245, 241, 232, 0.15);
+    flex: none;
+    position: relative;
+    cursor: pointer; /* Tappable affordance */
+  }
+  .credential:last-child {
+    border-bottom: 0;
   }
   .credential strong {
-    font-size: 25px;
+    font-size: 22px;
+    /* Add visual affordance - chevron indicator */
+    padding-right: 30px;
+    position: relative;
+  }
+  /* CSS-only chevron indicator */
+  .credential strong::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: var(--teal);
+  }
+  .credential span {
+    /* GSAP will control height/opacity */
+    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  /* Show swipe cue on mobile for progress feedback */
+  .mobile-scroll-cue {
+    display: block;
   }
   .story-aside {
     padding-top: 60px;
@@ -1735,18 +1773,18 @@ h2 i {
   display: none;
 }
 @media (max-width: 900px) {
-  .credential-inner,
+  /* Only expertise-index needs scroll-snap, credentials use accordion */
   .expertise-index {
     scroll-snap-type: x proximity;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  .credential-inner::-webkit-scrollbar,
   .expertise-index::-webkit-scrollbar {
     display: none;
   }
+  /* Credential accordion - no scroll snap needed */
   .credential {
-    scroll-snap-align: start;
+    /* No scroll-snap for accordion */
   }
   .mobile-scroll-cue {
     display: grid;
@@ -1796,20 +1834,23 @@ h2 i {
   }
   .expertise-mobile-progress i b {
     background: var(--teal);
+    transform: scaleX(0.15);  /* More visible initial state */
   }
 }
 
 /* Synchronized track states: the item nearest the viewport center becomes the visual anchor. */
 @media (max-width: 900px) {
+  /* For accordion, all items are equally visible - GSAP handles expand/collapse */
   .credential {
-    transition:
-      opacity 0.25s var(--ease-out),
-      transform 0.25s var(--ease-out);
-    opacity: 0.62;
+    opacity: 1;
   }
   .credential.is-active {
     opacity: 1;
-    transform: translateY(-2px);
+    transform: none;
+  }
+  /* Optional: subtle background on tap */
+  .credential:active {
+    background-color: rgba(63, 119, 114, 0.1);
   }
   .expertise-index button {
     transition:
