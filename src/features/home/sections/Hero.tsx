@@ -71,6 +71,10 @@ export function Hero() {
               <small>MCPS (Medicine) · MD (Neurology) · MACP (USA)</small>
             </div>
           </div>
+          <div className="hero-bottom">
+            <span>SCROLL TO EXPLORE</span>
+            <ArrowDownRight size={17} />
+          </div>
         </div>
         <div className="hero-visual">
           <div className="portrait-wrap">
@@ -107,10 +111,6 @@ export function Hero() {
             </span>
           </div>
         </div>
-      </div>
-      <div className="hero-bottom container">
-        <span>SCROLL TO EXPLORE</span>
-        <ArrowDownRight size={17} />
       </div>
     </section>
   );
