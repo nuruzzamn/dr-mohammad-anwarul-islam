@@ -35,6 +35,8 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth < 900;
+
       const intro = gsap.timeline({ defaults: { ease: "power4.out" } });
       intro
         .from(".nav-shell", { y: -18, opacity: 0, duration: 0.7 })
@@ -51,14 +53,20 @@ export default function Home() {
         .from(".neural-art", { opacity: 0, x: 20, duration: 1.1 }, "-=0.8");
 
       gsap.utils.toArray<HTMLElement>(".reveal").forEach(el => {
+        // Mobile: shorter distance, faster animation, earlier trigger
         gsap.from(el, {
-          y: 42,
+          y: isMobile ? 18 : 42,
           opacity: 0,
-          duration: 1,
+          duration: isMobile ? 0.5 : 1,
           ease: "power3.out",
-          scrollTrigger: { trigger: el, start: "top 84%", once: true },
+          scrollTrigger: {
+            trigger: el,
+            start: isMobile ? "top 95%" : "top 84%",
+            once: true,
+          },
         });
       });
+
       gsap.utils.toArray<HTMLElement>(".line-draw").forEach(el => {
         gsap.fromTo(
           el,
@@ -66,12 +74,13 @@ export default function Home() {
           {
             scaleY: 1,
             transformOrigin: "top center",
-            duration: 1.2,
+            duration: isMobile ? 0.6 : 1.2,
             ease: "power3.out",
             scrollTrigger: { trigger: el, start: "top 75%", once: true },
           }
         );
       });
+
       gsap.to(".hero-portrait", {
         y: -18,
         ease: "none",
@@ -82,6 +91,7 @@ export default function Home() {
           scrub: 1,
         },
       });
+
       gsap.fromTo(
         ".video-frame",
         { scale: 0.88, opacity: 0 },
@@ -99,54 +109,54 @@ export default function Home() {
         }
       );
 
-      const mobile = gsap.matchMedia();
-      mobile.add(
-        "(max-width: 900px) and (prefers-reduced-motion: no-preference)",
-        () => {
-          gsap.from(".credential", {
-            x: 26,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".credential-strip",
-              start: "top 85%",
-              once: true,
-            },
-          });
-          gsap.from(".expertise-index button", {
-            x: 24,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.08,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".expertise",
-              start: "top 78%",
-              once: true,
-            },
-          });
-          ScrollTrigger.create({
+      // Mobile-specific animations without prefers-reduced-motion check
+      if (isMobile) {
+        gsap.from(".credential", {
+          x: 16,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
             trigger: ".credential-strip",
-            start: "top 82%",
-            end: "bottom 35%",
-            onUpdate: self =>
-              gsap.set(".mobile-scroll-cue i b", {
-                opacity: 0.35 + self.progress * 0.65,
-              }),
-          });
-          ScrollTrigger.create({
+            start: "top 90%",
+            once: true,
+          },
+        });
+
+        gsap.from(".expertise-index button", {
+          x: 14,
+          opacity: 0,
+          duration: 0.45,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
             trigger: ".expertise",
-            start: "top 78%",
-            end: "bottom 25%",
-            onUpdate: self =>
-              gsap.set(".expertise-mobile-progress i b", {
-                opacity: 0.35 + self.progress * 0.65,
-              }),
-          });
-        }
-      );
+            start: "top 85%",
+            once: true,
+          },
+        });
+
+        ScrollTrigger.create({
+          trigger: ".credential-strip",
+          start: "top 85%",
+          end: "bottom 35%",
+          onUpdate: self =>
+            gsap.set(".mobile-scroll-cue i b", {
+              opacity: 0.35 + self.progress * 0.65,
+            }),
+        });
+
+        ScrollTrigger.create({
+          trigger: ".expertise",
+          start: "top 82%",
+          end: "bottom 25%",
+          onUpdate: self =>
+            gsap.set(".expertise-mobile-progress i b", {
+              opacity: 0.35 + self.progress * 0.65,
+            }),
+        });
+      }
     }, root);
     return () => ctx.revert();
   }, []);

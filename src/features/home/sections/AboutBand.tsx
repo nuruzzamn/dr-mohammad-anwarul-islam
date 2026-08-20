@@ -6,7 +6,7 @@ export function AboutBand() {
       <div className="container about-grid">
         <div className="about-photo reveal">
           <img
-            src="/assets/medical-notes_aad00235.jpg"
+            src="https://res.cloudinary.com/gn8mdjia/image/upload/v1787228106/medical-notes_aad00235.jpg"
             alt="Non-identifying clinical study and medical notes"
           />
           <span className="image-caption">

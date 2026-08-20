@@ -91,14 +91,14 @@ export function Hero() {
               tabIndex={-1}
             >
               <source
-                src="/assets/hero-neurology_b77e9575.mp4"
+                src="https://res.cloudinary.com/gn8mdjia/video/upload/hero-neurology_b77e9575.mp4"
                 type="video/mp4"
               />
             </video>
           </div>
           <img
             className="neural-art"
-            src="/assets/neural-linework_9f0bbf39.png"
+            src="https://res.cloudinary.com/gn8mdjia/image/upload/v1787228106/neural-linework_9f0bbf39.webp"
             alt=""
             aria-hidden="true"
           />

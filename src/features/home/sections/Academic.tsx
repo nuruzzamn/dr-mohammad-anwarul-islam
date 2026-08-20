@@ -6,7 +6,7 @@ export function Academic() {
       <div className="container academic-grid">
         <div className="academic-image reveal">
           <img
-            src="/assets/academic-detail_11c894f3.png"
+            src="https://res.cloudinary.com/gn8mdjia/image/upload/v1787228107/academic-detail_11c894f3.webp"
             alt="Academic medicine and clinical study"
           />
         </div>

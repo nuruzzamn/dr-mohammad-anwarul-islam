@@ -79,6 +79,17 @@
   overflow: clip;
   background: var(--ivory);
 }
+
+/* Ensure content is visible immediately - animations enhance, don't hide */
+.reveal,
+.line-draw,
+.expertise-index button,
+.symptom-list div,
+.medicine-list span,
+.credential {
+  opacity: 1;
+  visibility: visible;
+}
 .container {
   width: min(1240px, calc(100% - 72px));
   margin: 0 auto;
@@ -728,6 +739,7 @@ h2 i {
   transition:
     color 0.2s,
     padding 0.25s;
+  opacity: 1;
 }
 .symptom-list div:hover {
   color: var(--teal);
@@ -1556,12 +1568,27 @@ h2 i {
     gap: 26px;
     padding: 15px 0;
     border-bottom: 1px solid #bfcbc1;
+    /* Ensure smooth scrolling on mobile */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
   .expertise-index button {
     min-width: max-content;
     width: auto;
     font-size: 19px;
     gap: 9px;
+    /* Ensure buttons are immediately visible */
+    opacity: 1 !important;
+    transform: none !important;
+    /* Better touch targets */
+    min-height: 48px;
+    padding: 12px 0;
+  }
+  .expertise-index button span {
+    /* Ensure numbering is clearly visible */
+    color: var(--teal);
+    font-size: 10px;
+    letter-spacing: 0.12em;
   }
   .expertise-detail {
     border: 0;
@@ -1664,6 +1691,29 @@ h2 i {
     background: var(--charcoal);
     color: var(--ivory);
   }
+
+  /* Mobile symptom list improvements */
+  .symptoms-title p {
+    max-width: 100%;
+  }
+  .symptom-list {
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+  .symptom-list div {
+    grid-template-columns: 38px 1fr 16px;
+    gap: 12px;
+    padding: 18px 0;
+    min-height: 58px;
+  }
+  .symptom-list span {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+  }
+  .symptom-list strong {
+    font-size: 20px;
+    line-height: 1.2;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -1673,6 +1723,93 @@ h2 i {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* GSAP fallback: ensure content is visible by default */
+.reveal,
+.line-draw,
+.credential,
+.expertise-index button {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Mobile-specific improvements for performance and visibility */
+@media (max-width: 900px) {
+  /* Faster animation reveal with fallback */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Ensure symptom list items are visible */
+  .symptom-list div,
+  .medicine-list span {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Reduce motion on mobile for faster scroll */
+  .symptom-list div,
+  .medicine-list span {
+    transition: opacity 0.3s ease;
+  }
+
+  /* Better tap targets on mobile */
+  .symptom-list div {
+    min-height: 54px;
+    padding: 18px 0;
+  }
+
+  /* Ensure medicine list items are properly sized */
+  .medicine-list span {
+    min-height: 48px;
+  }
+
+  /* Performance optimizations for smooth mobile scrolling */
+  .site-shell {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Optimize rendering for animated elements */
+  .hero-portrait,
+  .neural-art,
+  .video-frame {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Prevent content shift during animations */
+  .reveal,
+  .symptom-list div,
+  .medicine-list span {
+    backface-visibility: hidden;
+  }
+
+  /* Improve content rendering speed */
+  main,
+  .container,
+  section {
+    contain: layout style paint;
+  }
+
+  /* Force visibility for all numbered items and interactive elements */
+  .expertise-index button,
+  .symptom-list div,
+  .medicine-list span,
+  .credential {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Ensure text remains readable during animations */
+  .symptom-list strong,
+  .medicine-list b {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 

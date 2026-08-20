@@ -38,7 +38,7 @@ export function Video() {
             }}
           >
             <source
-              src="/assets/introduction-video_e1a9d5bf.mp4"
+              src="https://res.cloudinary.com/gn8mdjia/video/upload/v1787228107/introduction-video_e1a9d5bf.mp4"
               type="video/mp4"
             />
           </video>
